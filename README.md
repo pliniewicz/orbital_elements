@@ -17,4 +17,6 @@ I recommend using *cargo* manager:
 git clone https://github.com/pliniewicz/orbital_elements.git .
 cd orbital_elements
 cargo build
+cargo run
 ```
+where *cargo build* can be ommited and one could *run* immediately.
