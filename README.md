@@ -6,6 +6,10 @@ I decided to upload it here for storage/future use.
 ## By far:
 What it does right now is prints Sun's rectangular geocentric coordinates for 3 dates of observation (for now they are set, working on I/O).
 
+## Dependencies
+* astro for astronomical utilities, like Julian days
+* nalgebra for vector handling
+
 ## Compilation
 
 I recommend using *cargo* manager:

@@ -1,3 +1,8 @@
+// temporary warning silencer
+#![allow(unused_imports)]
+#![allow(dead_code)]
+#![allow(non_snake_case)]
+#![allow(unused_variables)]
 extern crate nalgebra as na;
 extern crate astro;
 use na::{U2, U3, Dynamic, ArrayStorage, VecStorage, Matrix};
@@ -26,7 +31,7 @@ let (X2,Y2,Z2) = sun::geocent_rect_coords(point2.lat, point2.long, dist2, eclipt
 let (point3, dist3) = sun::geocent_ecl_pos(time::julian_day(&data3));
 let (X3,Y3,Z3) = sun::geocent_rect_coords(point3.lat, point3.long, dist3, ecliptic::mn_oblq_laskar(time::julian_day(&data3)));
 
-println!("{}", data1);
+// println!("{}", data1);
 println!("X1 :{} au\nY1: {} au\nZ1: {} au" ,X1, Y1, Z1);
 println!("X2 :{} au\nY2: {} au\nZ2: {} au" ,X2, Y2, Z2);
 println!("X3 :{} au\nY3: {} au\nZ3: {} au" ,X3, Y3, Z3);
