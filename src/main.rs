@@ -49,6 +49,9 @@ let p1 = rho2.cross(&rho3);
 let p2 = rho1.cross(&rho3);
 let p3 = rho1.cross(&rho2);
 
+// common scalar quantity
+let D0 = rho1.dot(&p1);
+
 // println!("{}, {}, {}", rho1, rho2, rho3);
 // println!("t3-t1: {}", time_difference1);
 // println!("t3-t2: {}", time_difference2);
