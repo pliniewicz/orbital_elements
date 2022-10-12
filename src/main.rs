@@ -5,7 +5,7 @@
 #![allow(unused_variables)]
 extern crate nalgebra as na;
 extern crate astro;
-use na::{U2, U3, Dynamic, ArrayStorage, VecStorage, Matrix};
+use na::{vector};
 use astro::consts::{GAUSS_GRAV};
 use astro::*;
 
@@ -39,10 +39,21 @@ let (X2,Y2,Z2) = sun::geocent_rect_coords(point2.lat, point2.long, dist2, eclipt
 let (point3, dist3) = sun::geocent_ecl_pos(time::julian_day(&data3));
 let (X3,Y3,Z3) = sun::geocent_rect_coords(point3.lat, point3.long, dist3, ecliptic::mn_oblq_laskar(time::julian_day(&data3)));
 
-println!("t3-t1: {}", time_difference1);
-println!("t3-t2: {}", time_difference2);
-println!("t2-t1: {}", time_difference3);
-println!("X1 :{} au\nY1: {} au\nZ1: {} au" ,X1, Y1, Z1);
-println!("X2 :{} au\nY2: {} au\nZ2: {} au" ,X2, Y2, Z2);
-println!("X3 :{} au\nY3: {} au\nZ3: {} au" ,X3, Y3, Z3);
+// wektory obserwacyjne
+let rho1 = na::vector![alpha1.cos()*delta1.cos(),alpha1.sin()*delta1.cos(),delta1.sin()];
+let rho2 = na::vector![alpha2.cos()*delta2.cos(),alpha2.sin()*delta2.cos(),delta2.sin()];
+let rho3 = na::vector![alpha3.cos()*delta3.cos(),alpha3.sin()*delta3.cos(),delta3.sin()];
+
+// iloczyny wektorowe
+let p1 = rho2.cross(&rho3);
+let p2 = rho1.cross(&rho3);
+let p3 = rho1.cross(&rho2);
+
+// println!("{}, {}, {}", rho1, rho2, rho3);
+// println!("t3-t1: {}", time_difference1);
+// println!("t3-t2: {}", time_difference2);
+// println!("t2-t1: {}", time_difference3);
+// println!("X1 :{} au\nY1: {} au\nZ1: {} au" ,X1, Y1, Z1);
+// println!("X2 :{} au\nY2: {} au\nZ2: {} au" ,X2, Y2, Z2);
+// println!("X3 :{} au\nY3: {} au\nZ3: {} au" ,X3, Y3, Z3);
 }
