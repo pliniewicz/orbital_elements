@@ -6,7 +6,8 @@ Uses Gauss's method of orbit determination.
 
 ## By far:
 What it does right now is prints Sun's rectangular geocentric coordinates for 3 dates of observation (for now they are set, working on I/O).
-Now is also capable of handling RADEC direction cosine vector for.
+Now is also capable of handling RADEC direction cosine vector for...
+
 
 ## Dependencies
 * astro for astronomical utilities, like Julian days

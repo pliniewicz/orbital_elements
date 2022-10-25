@@ -5,6 +5,8 @@
 #![allow(unused_variables)]
 extern crate nalgebra as na;
 extern crate astro;
+use std::env;
+use std::fs;
 use na::{vector};
 use astro::consts::{GAUSS_GRAV};
 use astro::*;
@@ -12,6 +14,13 @@ use astro::*;
 const TIME_UNIT: f64 = 1./GAUSS_GRAV;
 
 fn main() {
+
+let args: Vec<String> = env::args().collect();
+// dbg!(args);
+let file_path = &args[1];
+println!("In file {}", file_path);
+let contents = fs::read_to_string(file_path).expect("Should have been able to read the file");
+println!("Content: \n{contents}");
 
 // wkładam dane chwil czasu
 let data1 = time::Date{year: 2028, month: 1, decimal_day: time::decimal_day(&time::DayOfMonth{day: 3, hr: 1, min: 0, sec: 0.0, time_zone: 0.0}), cal_type: time::CalType::Gregorian};
@@ -48,6 +57,8 @@ let rho3 = na::vector![alpha3.cos()*delta3.cos(),alpha3.sin()*delta3.cos(),delta
 let p1 = rho2.cross(&rho3);
 let p2 = rho1.cross(&rho3);
 let p3 = rho1.cross(&rho2);
+
+// TODO:  <13-10-22 trzeba dodać wektor pozycyjny obserwatora, żeby zbudować > //
 
 // common scalar quantity
 let D0 = rho1.dot(&p1);
