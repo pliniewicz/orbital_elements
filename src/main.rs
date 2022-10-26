@@ -6,21 +6,45 @@
 extern crate nalgebra as na;
 extern crate astro;
 use std::env;
-use std::fs;
 use na::{vector};
 use astro::consts::{GAUSS_GRAV};
 use astro::*;
+
+mod utilities{
+use std::fs;
+use regex::Regex;
+use comment_strip::strip_comments;
+pub struct Dane {
+    time1: (u32, u32, u32, u32, u32, f32),
+    time2: (u32, u32, u32, u32, u32, f32),
+    time3: (u32, u32, u32, u32, u32, f32),
+    ra1: (u32, u32, f32),
+    ra2: (u32, u32, f32),
+    ra3: (u32, u32, f32),
+    dec1: (u32, u32, f32),
+    dec2: (u32, u32, f32),
+    dec3: (u32, u32, f32),
+}
+
+pub fn file_config(args: &[String]) -> (&str ,String) {
+
+    let file_path = &args[1];
+    let contents = fs::read_to_string(file_path).expect("Should have been able to read the file");
+
+(file_path, contents)
+}
+
+}
 
 const TIME_UNIT: f64 = 1./GAUSS_GRAV;
 
 fn main() {
 
 let args: Vec<String> = env::args().collect();
-// dbg!(args);
-let file_path = &args[1];
+
+let (file_path, contents) = utilities::file_config(&args);
 println!("In file {}", file_path);
-let contents = fs::read_to_string(file_path).expect("Should have been able to read the file");
-println!("Content: \n{contents}");
+println!("{}", contents);
 
 // wkładam dane chwil czasu
 let data1 = time::Date{year: 2028, month: 1, decimal_day: time::decimal_day(&time::DayOfMonth{day: 3, hr: 1, min: 0, sec: 0.0, time_zone: 0.0}), cal_type: time::CalType::Gregorian};
