@@ -40,11 +40,11 @@ const TIME_UNIT: f64 = 1./GAUSS_GRAV;
 
 fn main() {
 
-let args: Vec<String> = env::args().collect();
+// let args: Vec<String> = env::args().collect();
 
-let (file_path, contents) = utilities::file_config(&args);
-println!("In file {}", file_path);
-println!("{}", contents);
+// let (file_path, contents) = utilities::file_config(&args);
+// println!("In file {}", file_path);
+// println!("{}", contents);
 
 // wkładam dane chwil czasu
 let data1 = time::Date{year: 2028, month: 1, decimal_day: time::decimal_day(&time::DayOfMonth{day: 3, hr: 1, min: 0, sec: 0.0, time_zone: 0.0}), cal_type: time::CalType::Gregorian};
